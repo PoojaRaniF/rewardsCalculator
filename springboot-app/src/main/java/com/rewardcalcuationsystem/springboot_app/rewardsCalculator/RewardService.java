@@ -57,14 +57,10 @@ public class RewardService {
             if (month.getValue() > now.getMonthValue()) {
                 break;
             }
-            logger.log(Level.INFO, "month {0}", month);
             LocalDate startDate = LocalDate.of(now.getYear(), month, 1);
             LocalDate endDate = startDate.withDayOfMonth(startDate.lengthOfMonth());
-            logger.log(Level.INFO, "startDate {0}", startDate);
-            logger.log(Level.INFO, "endDate {0}", endDate);
 
             List<Transaction> transactions = transactionRepository.findByCustomerIdAndTransactionDateBetween(customerId, startDate, endDate);
-            logger.log(Level.INFO, "transactions {0}", transactions);
 
             int monthlyPoints = transactions.stream()
                     .mapToInt(transaction -> calculatePoints(transaction.getAmount()))
