@@ -72,7 +72,6 @@ public class RewardService {
 
             monthlyRewards.put(month.name(), monthlyPoints);
         }
-
         return monthlyRewards;
         }
 
